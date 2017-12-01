@@ -1,0 +1,4 @@
+Has Account
+  Has Transaction
+    Amount is greater than 3
+OR Is Active

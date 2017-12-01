@@ -1,0 +1,4 @@
+Has account
+    NOT
+        Balance is less than 0
+        OR Type is Checking

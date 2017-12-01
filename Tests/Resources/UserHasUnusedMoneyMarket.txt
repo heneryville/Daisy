@@ -1,0 +1,4 @@
+Is Active
+Has Account
+    Type is MoneyMarket
+    NOT Has Transaction

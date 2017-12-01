@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE53DC38-3C58-4E77-B9E6-CC867AEEE802}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ancestry.Daisy</RootNamespace>
+    <AssemblyName>Ancestry.Daisy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fasterflect">
+      <HintPath>..\..\..\libs\Fasterflect.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DaisyCompiler.cs" />
+    <Compile Include="Language\AST\Trace\AndOperatorTrace.cs" />
+    <Compile Include="Language\AST\Trace\GroupOperatorTrace.cs" />
+    <Compile Include="Language\AST\Trace\TraceNode.cs" />
+    <Compile Include="Language\AST\Trace\NotOperatorTrace.cs" />
+    <Compile Include="Language\AST\Trace\OrOperatorTrace.cs" />
+    <Compile Include="Language\AST\Trace\StatementTrace.cs" />
+    <Compile Include="Language\InconsistentWhitespaceException.cs" />
+    <Compile Include="Language\Walks\DaisyTracePrinter.cs" />
+    <Compile Include="Language\WhitespaceEater.cs" />
+    <Compile Include="Program\ContextBundle.cs" />
+    <Compile Include="Program\DaisyRuntimeException.cs" />
+    <Compile Include="Program\DaisyProgram.cs" />
+    <Compile Include="Linking\DaisyLinker.cs" />
+    <Compile Include="Linking\LinkedDaisyStatement.cs" />
+    <Compile Include="Linking\FailedLinkException.cs" />
+    <Compile Include="Language\Walks\AstTreeWalker.cs" />
+    <Compile Include="Language\AST\AndOperator.cs" />
+    <Compile Include="Language\DaisyAst.cs" />
+    <Compile Include="Language\AST\GroupOperator.cs" />
+    <Compile Include="Language\AST\NotOperator.cs" />
+    <Compile Include="Language\AST\OrOperator.cs" />
+    <Compile Include="Language\AST\IDaisyAstNode.cs" />
+    <Compile Include="Language\AST\Statement.cs" />
+    <Compile Include="Language\DaisyParser.cs" />
+    <Compile Include="Language\Walks\DaisyAstPrinter.cs" />
+    <Compile Include="Linking\LinkingError.cs" />
+    <Compile Include="Program\ExecutionDebugInfo.cs" />
+    <Compile Include="Program\DaisyExecution.cs" />
+    <Compile Include="Program\ExecutionResultType.cs" />
+    <Compile Include="Program\PerformanceCounter.cs" />
+    <Compile Include="Program\Tracer.cs" />
+    <Compile Include="Statements\StatementParameter.cs" />
+    <Compile Include="Statements\TitleAttribute.cs" />
+    <Compile Include="Utils\FastFlect.cs" />
+    <Compile Include="Utils\MultiMap.cs" />
+    <Compile Include="Utils\Maybe.cs" />
+    <Compile Include="Statements\CannotLinkStatementException.cs" />
+    <Compile Include="Statements\ReflectionStatementDefinition.cs" />
+    <Compile Include="Statements\MatchesAttribute.cs" />
+    <Compile Include="Statements\InvokationContext.cs" />
+    <Compile Include="Statements\IStatementDefinition.cs" />
+    <Compile Include="Statements\StatementController.cs" />
+    <Compile Include="Language\UnexpectedEndOfStreamException.cs" />
+    <Compile Include="Language\UnexpectedTokenException.cs" />
+    <Compile Include="Language\Lexer.cs" />
+    <Compile Include="Language\LookAheadTokenStream.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statements\MatchingContext.cs" />
+    <Compile Include="Statements\StatementSet.cs" />
+    <Compile Include="Statements\StaticAnalysis.cs" />
+    <Compile Include="Utils\StringExtentions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

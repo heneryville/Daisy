@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Ancestry.Daisy</id>
+    <version>2.4.5</version>
+    <title>Daisy</title>
+    <authors>Ancestry.com</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An ultra-light-weight rules engine. Daisy allows for rules to be written by domain experts, and only the sticky parts are written by developers. Essentially domain experts can create and re-use their own domain language.</description>
+    <summary />
+    <releaseNotes>Fixed insidious multi-threading bug. Daisy should now be thread safe</releaseNotes>
+    <dependencies>
+      <dependency id="fasterflect"/>
+    </dependencies>
+  </metadata>
+  <files>
+	  <file src="bin\Debug\Ancestry.Daisy.dll" target="lib\net40" />
+	  <file src="bin\Debug\Ancestry.Daisy.pdb" target="lib\net40" />
+	  <file src="bin\Debug\Ancestry.Daisy.dll" target="lib\net45" />
+	  <file src="bin\Debug\Ancestry.Daisy.pdb" target="lib\net45" />
+  </files>
+</package>
+

@@ -1,0 +1,124 @@
+﻿@using Ancestry.Daisy.Statements
+@using Newtonsoft.Json
+@model Ancestry.Daisy.Documentation.MVC.DaisyDocumentationViewModel
+
+<html ng-app="myapp">
+    <head>
+        <title>@Model.Description</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+            section:not(:first-child) {
+                margin-top: 60px;
+            }
+
+            h2 {
+                border-bottom: 2px solid gray;
+            }
+
+            article:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            article {
+                border-left: 1px solid #f3f3f3;
+                border-bottom: 1px solid #f3f3f3;
+                padding: 1px 0px 20px 20px;
+            }
+
+            .param-type {
+                color: #999;
+                font-weight: normal;
+                font-size: .9em;
+            }
+        </style>
+    </head>
+    <body ng-controller="DaisyDocsCtrl">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>{{description}}</h1>
+                <p>Daisy statement documentation</p>
+                <form role="search">
+                    <div class="form-group">
+                        <input ng-model="filtertxt" type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <section class="scope" ng-repeat="entry in entries">
+                <a id="{{entry.scope}}"></a>
+                <h2>{{entry.scope}}</h2>
+                <article class="statement" ng-repeat="statement in entry.statements">
+                    <h3>{{statement.Title}}</h3>
+                    <div ng-show="statement.Description" ng-bind-html="to_trusted(statement.Description)" class="description"></div>
+                    <div ng-show="statement.TransformsTo" class="transform-to">
+                        Allows <a ng-href="#{{statement.TransformsTo}}" ng-click="clearFilter()">{{statement.TransformsTo}}</a> sub-rules
+                    </div>
+                    <div ng-show="statement.Parameters.length > 0">
+                        <dl class="dl-horizontal">
+                            <div ng-repeat="param in statement.Parameters">
+                                <dt>{{param.Name}} <span class="param-type">({{param.Type}})</span></dt>
+                                <dd ng-bind-html="to_trusted(param.Description)"></dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+            </section>
+            
+        </div>
+        <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+        
+        <script type="text/javascript">
+          var data = @Raw(JsonConvert.SerializeObject(Model));
+            var app = angular.module('myapp', [])
+            .controller('DaisyDocsCtrl',function ($scope,$sce) {
+                $scope.to_trusted = function(html_code) {
+                    return $sce.trustAsHtml(html_code);
+                };
+
+              $scope.description = data.Description;
+              $scope.entries = runFilter();
+
+              function runFilter() {
+                var filter = ($scope.filtertxt || '').toLowerCase();
+                return _(data.Statements).chain()
+                  .filter(function(statement) {
+                    return filter == ''
+                      || statement.Title.toLowerCase().indexOf(filter) > -1;
+                  })
+                  .groupBy(function(statement) {
+                    return statement.Scope;
+                  })
+                  .map(function(v, k) {
+                    return {
+                      scope: k,
+                      statements: _(v).sortBy(function(statement) { return statement.Title; })
+                    };
+                  })
+                  .value()
+                  .sort(function(v1, v2) {
+                    var inOrderList1 = data.ScopeOrder.indexOf(v1.scope);
+                    var inOrderList2 = data.ScopeOrder.indexOf(v2.scope);
+                    if(inOrderList1 < 0 && inOrderList2 < 0) {
+                        if(v1.scope > v2.scope) return 1;
+                      return -1;
+                    }
+                    if(inOrderList1 < 0) return 1;
+                    if(inOrderList2 < 0) return -1;
+                    return inOrderList1 - inOrderList1;
+                  });
+              }
+
+              $scope.$watch('filtertxt', function () {
+                $scope.entries = runFilter();
+              });
+
+              $scope.clearFilter = function() { $scope.filtertxt = ''; };
+
+            });
+        </script>
+    </body>
+</html>

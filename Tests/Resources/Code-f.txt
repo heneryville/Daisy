@@ -1,0 +1,7 @@
+t
+AND f
+OR
+  t
+  AND
+    f
+    OR f    

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Ancestry.Daisy.Documentor</id>
+    <version>2.1.0</version>
+    <title>Daisy Auto-Docs</title>
+    <authors>Ancestry.com</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Documentation generator for Daisy</description>
+    <summary />
+    <releaseNotes>Change CommentDocumentation to use static parsers</releaseNotes>
+    <dependencies>
+      <dependency id ="Ancestry.Daisy"/>
+    </dependencies>
+  </metadata>
+  <files>
+	  <file src="bin\Debug\Ancestry.Daisy.Documentation.dll" target="lib\net40" />
+	  <file src="bin\Debug\Ancestry.Daisy.Documentation.pdb" target="lib\net40" />
+	  <file src="bin\Debug\Ancestry.Daisy.Documentation.dll" target="lib\net45" />
+	  <file src="bin\Debug\Ancestry.Daisy.Documentation.pdb" target="lib\net45" />
+  </files>
+</package>
+

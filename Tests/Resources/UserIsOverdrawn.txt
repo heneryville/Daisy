@@ -1,0 +1,4 @@
+Is Active
+Has Account
+    Type is checking
+    Balance is less than 0

@@ -1,0 +1,16 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=crlf
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+#Compiled files
+/Host/js/contextvis.js binary
+/Host/js/contextvis.min.js binary
+/Host/js/contextvis.min.js.map binary
+/Host/css/*.css binary

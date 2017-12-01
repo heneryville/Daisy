@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ancestry.Context</name>
+    </assembly>
+    <members>
+        <member name="M:Ancestry.Context.Episodes.DaisyRules.EventRules.IsBirth">
+            <summary>
+            True if the Event is a birth event
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ancestry.Context.ContentServices.NewspaperDataRepo">
+            <summary>
+            Class that will check for newspaper entries on a specific date.
+            </summary>
+        </member>
+        <member name="F:Ancestry.Context.ContentServices.NewspaperDataRepo.mediaService">
+            <summary>
+            The media service.
+            </summary>
+        </member>
+        <member name="F:Ancestry.Context.ContentServices.NewspaperDataRepo.recordSearchService">
+            <summary>
+            The record search service.
+            </summary>
+        </member>
+        <member name="F:Ancestry.Context.ContentServices.NewspaperDataRepo.logger">
+            <summary>
+            The logging service.
+            </summary>
+        </member>
+        <member name="M:Ancestry.Context.ContentServices.NewspaperDataRepo.#ctor(Ancestry.SearchServices.RecordSearch.Contracts.IRecordSearchService,Ancestry.Context.MediaService.IMediaService,Ancestry.Logging.ILogger,Ancestry.SearchServices.CollectionInfo.Contracts.ICollectionText)">
+            <summary>
+            Initializes a new instance of the <see cref="!:NewspaperDataSource"/> class.
+            </summary>
+            <param name="recordSearchService">The record search service.</param>
+            <param name="mediaService">The media service.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Ancestry.Context.ContentServices.NewspaperDataRepo.FindCanidateDbids(System.DateTime,System.String,System.Int32)">
+            <summary>
+            Gets the db ids.
+            </summary>
+            <param name="date">The birth date.</param>
+            <param name="place">The birth place.</param>
+            <returns>A list of database ids.</returns>
+        </member>
+        <member name="M:Ancestry.Context.ContentServices.NewspaperDataRepo.CreateHitCountQueryRequest(System.DateTime,System.String,System.Int32)">
+            <summary>
+            Creates the hit count query request.
+            </summary>
+            <param name="queryDate">The birth date.</param>
+            <param name="birthPlace">The birth place.</param>
+            <returns>A new hit count request</returns>
+        </member>
+        <member name="M:Ancestry.Context.ContentServices.NewspaperDataRepo.GetBrowseId(System.Int32,System.DateTime)">
+            <summary>
+            Gets the URL.
+            </summary>
+            <param name="dbId">The db id.</param>
+            <param name="date">The date.</param>
+            <returns>
+            The url to the image.
+            </returns>
+        </member>
+        <member name="P:Ancestry.Context.ContentServices.NewspaperDataRepo.NationalNewspaperDbIds">
+            <summary>
+            Gets the hard coded db ids.
+            </summary>
+        </member>
+        <member name="M:Ancestry.Context.ContentServices.SurnameRepo.SanitizeNameMeaning(System.String)">
+            <summary>
+            Name meanints contain these odd acornoyms at the end of them. Remove them.
+            </summary>
+            <param name="nameMeaning">The name meaning.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ancestry.Context.ContextDataTransformer">
+            <summary>
+            Converts and ADM and pid into a thicker data model specialized for contextualization
+            </summary>
+        </member>
+        <member name="P:Ancestry.Context.ContextServiceDependencies.Timeouts.CloseTimeout">
+            <summary>
+            Gets the interval of time after which the close method, invoked by a communication object, times out.
+            </summary>
+            <returns>
+            The <see cref="T:System.Timespan"/> that specifies the interval of time to wait for the close method to time out.
+            </returns>
+        </member>
+        <member name="P:Ancestry.Context.ContextServiceDependencies.Timeouts.OpenTimeout">
+            <summary>
+            Gets the interval of time after which the open method, invoked by a communication object, times out.
+            </summary>
+            <returns>
+            The <see cref="T:System.Timespan"/> that specifies the interval of time to wait for the open method to time out.
+            </returns>
+        </member>
+        <member name="P:Ancestry.Context.ContextServiceDependencies.Timeouts.ReceiveTimeout">
+            <summary>
+            Gets the interval of time after which the receive method, invoked by a communication object, times out.
+            </summary>
+            <returns>
+            The <see cref="T:System.Timespan"/> that specifies the interval of time to wait for the receive method to time out.
+            </returns>
+        </member>
+        <member name="P:Ancestry.Context.ContextServiceDependencies.Timeouts.SendTimeout">
+            <summary>
+            Gets the interval of time after which the send method, invoked by a communication object, times out.
+            </summary>
+            <returns>
+            The <see cref="T:System.Timespan"/> that specifies the interval of time to wait for the send method to time out.
+            </returns>
+        </member>
+        <member name="M:Ancestry.Context.ConcurrentCache`1.CacheItem.CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="obj"/> in the sort order. Zero This instance occurs in the same position in the sort order as <paramref name="obj"/>. Greater than zero This instance follows <paramref name="obj"/> in the sort order. 
+            </returns>
+            <param name="obj">An object to compare with this instance. </param><exception cref="T:System.ArgumentException"><paramref name="obj"/> is not the same type as this instance. </exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="M:Ancestry.Context.ICountryNormalizer.CountryOf(System.String)">
+            <summary>
+            Converts a country into a country. This is Suggestionl for data
+            from "Place of Origin" field in the New York Passengar list,
+            which is what the FamilyFactsApi uses for Place of origin.
+            </summary>
+            <param name="place">The country.</param>
+            <returns>The country, or null if it could not be identified.</returns>
+        </member>
+        <member name="M:Ancestry.Context.CountryNormalizer.CountryOf(System.String)">
+            <summary>
+            Converts a country into a country. This is Suggestionl for data
+            from "Place of Origin" field in the New York Passengar list,
+            which is what the FamilyFactsApi uses for Place of origin.
+            </summary>
+            <param name="place">The country.</param>
+            <returns>The country, or null if it could not be identified.</returns>
+        </member>
+        <member name="M:Ancestry.Context.DataServices.Remote.ITreeDataSource.GetTree(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Gets the tree, starting from the given PID.
+            </summary>
+            <param name="id">The id.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ancestry.Context.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.AcceptableCountries">
+             <summary>
+               Looks up a localized string similar to Albania
+            Algeria
+            American Samoa
+            Andorra
+            Angola
+            Antigua and Barbuda
+            Argentina
+            Armenia
+            Australia
+            Austria
+            Azerbaijan
+            Baden
+            Bahrain
+            Bangladesh
+            Barbados
+            Bavaria
+            Belarus
+            Belgium
+            Belize
+            Benin
+            Bermuda
+            Bhutan
+            Bohemia
+            Bolivia
+            Bosnia and Herzegovina
+            Botswana
+            Brazil
+            British Guiana
+            Bulgaria
+            Burkina Faso
+            Burundi
+            Cameroon
+            Canary Islands
+            Canada
+            Cape Verde
+            Chad
+            Chile
+            China
+            Colombia
+            Costa Rica
+            Croatia
+            Cuba
+            Cyprus
+            Denmark
+            Dominican Republic
+            East Timor
+            Ecuador
+            El Salvador
+            England
+             [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.AkaCountries">
+             <summary>
+               Looks up a localized string similar to #Reorgainzed to
+            british honduras,belize
+            #Misspellings
+            saxony (kingdom state),Saxony
+            amerika,United States
+            salvador,el salvador
+            british honauras,british honduras
+            britian,britain
+            New Grenada,New Granada
+            new foundlend,newfoundland
+            Lallymolly,Ireland
+            canary and isles,canary islands
+            caney islands,canary islands
+            canary tsles,canary isles
+            canary isles,canary islands
+            stafordshire,staffordshire
+            st domingo,santo domingo
+            sto domingo,santo domingo
+            #Principle Of
+            kingston,Jamaica
+            liverpool,England
+            ha [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.BlackRaceAliases">
+             <summary>
+               Looks up a localized string similar to Black
+            Mulatto
+            Colored.
+             </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.DustBowlAffectedStates">
+             <summary>
+               Looks up a localized string similar to Texas
+            Missouri
+            Oklahoma
+            Colorado
+            Iowa
+            Nebraska
+            Kansas
+            Arkansas
+            New Mexico.
+             </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.GenealogyServiceRequestTemplate_txt">
+             <summary>
+               Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; ?&gt;
+            &lt;s:Envelope xmlns:a=&quot;http://www.w3.org/2005/08/addressing&quot; xmlns:s=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt;
+              &lt;s:Header&gt;
+                &lt;a:Action s:mustUnderstand=&quot;1&quot;&gt;
+                  http://tempuri.org/IPersonModelService/ListTreeGraphADM
+                &lt;/a:Action&gt;
+                &lt;a:MessageID&gt;urn:uuid:8d1c7f1b-bb20-45f8-9461-b1c1b1674d1b&lt;/a:MessageID&gt;
+                &lt;a:ReplyTo&gt;
+                  &lt;a:Address&gt;
+                    http://www.w3.org/2005/08/addressing/anonymous
+                  &lt;/a:Address&gt;
+                &lt;/a:ReplyTo&gt;
+                &lt;a:To s:mustUnderstand=&quot;1&quot;&gt;
+                  [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Ancestry.Context.Resources.SouthernStates">
+             <summary>
+               Looks up a localized string similar to Florida
+            Georgia
+            Alabama
+            Mississippi
+            Louisiana
+            Texas
+            South Carolina
+            North Carolina
+            Tennessee
+            Arkansas
+            Maryland
+            Virginia
+            Kentucky
+            Oklahoma
+            Missouri.
+             </summary>
+        </member>
+        <member name="M:Ancestry.Context.SurnameContexter.PlacesOfOrigin(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Where the ISurnameRepo will return raw counts of a county and it's origins,
+            sanatize the results and normalize them against each other
+            </summary>
+            <param name="surname">The surname.</param>
+            <param name="limit">The limit.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
