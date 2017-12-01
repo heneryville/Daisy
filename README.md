@@ -24,13 +24,13 @@ This rule could be used in a manufacturing domain to assert that all widgets pas
 
 Daisy handles the boolean algebra and linking statements to functions. Domain experts write business rules in a language that not only makes sense to them, but they invent. Software engineers translate each statement into code their software understands.
 
-###Why Use Daisy
+### Why Use Daisy
 
 *  Simple to write, implement and deploy, it's about as lightweight a rules engine you'll ever use
 *  Domain adaptive. Daisy will work for nearly any domain you've got, since it let's you define the data model
 *  Open source. Openly available well tested source means you can always see what's happening under the covers
 
-###Using Daisy
+### Using Daisy
 Daisy is available as a [nuget package]
 
 For Your Domain Experts
@@ -80,13 +80,13 @@ All purchases
 For Your Developers
 -------------------
 
-###In One File
+### In One File
 ```C#
 class Program
     {
         static void Main(string[] args)
         {
-            bool result = DaisyCompiler.Compile<Widget>("@Is Verified",
+            bool result = DaisyCompiler.Compile<Widget>("Is Verified",
                 new StatementSet().FromCurrentAssembly())
               .Execute(
                 new Widget() { Verifier = new User() { UserName = "Jim" } })
@@ -113,7 +113,7 @@ class Program
         }
     }
 ```
-###Explained
+### Explained
 The developer's job is to translate statements into coded queries against your data model. This is done by writing StatementControllers, such as the one below:
 
 ```C#
@@ -137,15 +137,15 @@ A statement controller has a number of methods, each of which maps to a bit of c
 1.  Matching a Daisy line
 2.  The method definition
 
-###Matching
+### Matching
 Statement controller methods may be annotated with the Matches attribute. This attribute specifies a regular expression that, is a line in the Daisy rule matches, the rule will execute. The regular expression may specify capture groups to be passed as paramters to the method. If there are capture groups, the regular expression must have the same number of captures as paramters in the method, and the method parameters must be either strings or ints.
 
 Methods that do not have a Matches attribute will match if the method name, with spaces between the humps of the camel, matches the Daisly line.  Clearly method that do not provide a Matches attribute cannot have paramters.  All regular expression evaluation is case insensitive.  In the example above, the IsDeactivated method provides no attribute, and so would match either "Is deactivated", or "Is       Deactivated".
 
-###Statement methods
+### Statement methods
 Statement method are executed with paramters as parsed from capture groups of the regular expressions. They must return a boolean, and have access to the scope via the inherited Scope variable.
 
-###Changing scope
+### Changing scope
 Some statement methods need to alter the scope, to allow groups to execute on sub-objects. For example, in this rule: 
 ```C#
 All purchases
@@ -166,7 +166,7 @@ public class UserController : StatementController<User>
 ```
 The Daisy runtime will handle calling sub-statements when the proceed function is invoked. Notice that the proceed function calls requires a single paramter, which will be the new scope object for the sub rules.
 
-###Invoking Daisy
+### Invoking Daisy
 Daisy programs can be compiled by calling DaisyCompiler.Compile. This method requires:
 
 1.  The type of the initial scope for a rule
@@ -186,7 +186,7 @@ Once a Daisy program has been compiled, it can by it's execute method, and the r
 daisyProgram.Execute(initialScopeValue).Result;
 ```
 
-###Context
+### Context
 Some rules may require more input than a single scope value. Context allows sending more values via a ContextBundle, which is essentially a Dictionary. Pass it in as the second value of the execute method, and statement methods can access via the inherited Context property.
 ```C#
 var context = new ContextBundle();
@@ -201,7 +201,7 @@ public class PersonController : StatementController<Person> {
 }
 ```
 
-###Attachments
+### Attachments
 Some rules may require more output that just a boolean. Attachments allow returning more values. Statements may add results to the Attachments object (essentially a Dictionary) and the results are available in the excution.
 ```C#
     
