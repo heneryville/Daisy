@@ -3,7 +3,7 @@ Daisy
 
 Daisy is a [business writeable] domain specific language for business rules.  It lets business experts write the rules, and software developers define how they are implemented. Daisy itself is domain agnostic, but allows domain experts and software developers to create the rule domain together. 
 
-###Examples:
+### Examples:
 <pre>
 Any User
   Is Active
